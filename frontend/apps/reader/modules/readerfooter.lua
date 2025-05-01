@@ -416,6 +416,7 @@ footerTextGeneratorMap = {
     end,
     dynamic_filler = function(footer)
         local max_width = footer[1]:getSize().w - 2 * footer.horizontal_margin
+        max_width = math.min(max_width, footer.footer_text.max_width or math.huge) -- ugly patch        
         -- when the filler is between other items, it replaces the separator
         local text, is_filler_inside = footer:genAllFooterText(footerTextGeneratorMap.dynamic_filler)
         local tmp = TextWidget:new{
